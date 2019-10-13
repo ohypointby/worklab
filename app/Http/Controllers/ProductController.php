@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-require("vendor/autoload.php");
-$openapi = \OpenApi\scan('/path/to/project');
-header('Content-Type: application/x-yaml');
-echo $openapi->toYaml();
-
 use App\Http\Resources\DataResource;
 use App\Http\Resources\ProductResource;
 use App\Product;
@@ -14,18 +9,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * @OA\Info(title="My First API", version="0.1")
-     */
 
     /**
-     * @OA\Get(
-     *     path="/api/resource.json",
-     *     @OA\Response(response="200", description="An example resource")
-     * )
-     */
-    /**
-     * Display a listing of the resource.
+     * Display a listing of the product.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +21,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new product.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,9 +29,15 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/products",
+     *     summary="Store a newly created product in storage",
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * Store a newly created product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,7 +53,23 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/products/{id}",
+     *     summary="Display the specified product",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="query",
+     *         description="id of product",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * Display the specified product.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -73,7 +81,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified product.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -84,7 +92,23 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/products/{id}",
+     *     summary="Update the specified product in storage",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="query",
+     *         description="id of product",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * Update the specified product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -101,7 +125,23 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/products/{id}",
+     *     summary="Remove the specified product from storage",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="query",
+     *         description="id of modified",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * Remove the specified product from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -111,6 +151,21 @@ class ProductController extends Controller
         Product::unsetProduct($id);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/modified",
+     *     @OA\Parameter(
+     *         name="time",
+     *         in="query",
+     *         description="Time of modified",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
     /**
      * Search for modified products.
      *

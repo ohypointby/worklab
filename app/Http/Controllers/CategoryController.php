@@ -11,7 +11,14 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/categories",
+     *     summary="Display a listing of the products",
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * Display a listing of the products.
      *
      * @return \Illuminate\Http\Response
      */
@@ -86,6 +93,22 @@ class CategoryController extends Controller
         //
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/categories/{category}/products",
+     *     summary="Show a list of products for a specific category",
+     *     @OA\Parameter(
+     *         name="category",
+     *         in="query",
+     *         description="id of category",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
     /**
      * Show products for the specified category.
      *

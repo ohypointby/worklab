@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * @OA\Info(title="WorklabAPI", version="0.1")
+     */
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,7 +33,14 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\POST(
+     *     path="/api/user",
+     *     summary="User registration",
+     *     @OA\Response(response="200", description="OK")
+     * )
+     */
+    /**
+     * User registration.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
