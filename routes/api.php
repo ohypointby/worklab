@@ -15,16 +15,16 @@ use Illuminate\Http\Request;
 
 
 Route::middleware('cors')->group(function () {
-    Route::get('categories', 'CategoryController@index');//Получение списка всех категорий
-    Route::get('categories/{category}/products', 'CategoryController@products');//Получение списка товаров в конкретной категории
-    Route::get('products/{id}', 'ProductController@show');//Получение товара по id
+    Route::get('categories', 'CategoryController@index');
+    Route::get('categories/{category}/products', 'CategoryController@products');
+    Route::get('products/{id}', 'ProductController@show');
     Route::post('register','UserController@store');
     Route::get('modified', 'ProductController@showModifiedProducts');
 
     Route::middleware('auth:api')->group(function () {
-        Route::post('products', 'ProductController@store');//добавление
-        Route::put('products/{id}', 'ProductController@update');//изменение
-        Route::delete('products/{id}', 'ProductController@destroy');//удаление
+        Route::post('products', 'ProductController@store');
+        Route::put('products/{id}', 'ProductController@update');
+        Route::delete('products/{id}', 'ProductController@destroy');
     });
 
 });
